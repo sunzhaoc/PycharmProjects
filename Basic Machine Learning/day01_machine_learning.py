@@ -4,6 +4,9 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.feature_selection import VarianceThreshold
+from sklearn.decomposition import PCA
+from scipy.stats import pearsonr
+
 import jieba
 import pandas as pd
 
@@ -194,13 +197,36 @@ def variance_demo():
     data = pd.read_csv("train.csv")
 
     data = data.iloc[:, 2:5]
-    # print("data\n", data)
+    print("data\n", data)
     # 2.实例化一个转换器类
     transfer = VarianceThreshold(threshold=0.0001)
 
     # 3.调用fit_transform
     data_new = transfer.fit_transform(data)
     print("data_new:\n", data_new, data_new.shape)
+
+    # 计算某两个变量之间的相关系数
+    r1 = pearsonr(data["margin1"], data["shape1"])
+    print("相关系数:\n", r1)
+    # r2 =  pearsonr(data["revenue"], data["total_expense"])
+    # print("revenue与total_expense之间的相关性:\n", r2)
+
+    return None
+
+
+def pca_demo():
+    """
+    PCA降维
+    :return:
+    """
+    data = [[2, 8, 4, 5], [6, 3, 0, 8], [5, 4, 9, 1]]
+
+    # 1.实例化一个转换器类
+    transfer = PCA(n_components=0.95)
+
+    # 2.调用fit_transform
+    data_new = transfer.fit_transform(data)
+    print("data_new\n", data_new)
     return None
 
 
@@ -225,4 +251,6 @@ if __name__ == "__main__":
     # 代码9:标准化
     # stand_demo()
     # 代码10:低方差特征过滤
-    variance_demo()
+    # variance_demo()
+    # 代码11:PCA降维
+    pca_demo()
