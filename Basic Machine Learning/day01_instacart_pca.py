@@ -23,17 +23,21 @@ products = pd.read_csv("products.csv")
 
 # aisles.csv：商品所属具体物品类别
 # 字段：aisle_id	aisle
+
+# 合并aisles和products
 tab1 = pd.merge(aisles, products, on=["aisle_id", "aisle_id"])
 tab2 = pd.merge(tab1, order_products, on=["product_id", "product_id"])
 tab3 = pd.merge(tab2, orders, on=["order_id", "order_id"])
+tab3.head()
 
-tab3
+# 3、找到user_id和aisle_id之间的关系
 table = pd.crosstab(tab3["user_id"], tab3["aisle"])
-table
+
 data = table[:10000]
-data
+
 # 4、PCA降维
 from sklearn.decomposition import PCA
+
 # 1)实例化一个转换器类
 transfer = PCA(n_components=0.95)
 # 2)调用fit_transform
