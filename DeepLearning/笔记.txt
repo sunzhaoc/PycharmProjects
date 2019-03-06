@@ -1,0 +1,12 @@
+Windows PowerShell
+
+TensorBoard目录：
+D:\SOFTWARE\Anaconda\envs\AI\Scripts
+输入
+.\tensorboard --logdir=E:\STUDY\PythonCode\DeepLearning\tmp\summary
+
+CMD
+tensorboard --logdir=E:\STUDY\PythonCode\DeepLearning\tmp\summary
+
+浏览器打开
+http://localhost:6006
