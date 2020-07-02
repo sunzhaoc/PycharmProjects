@@ -1,7 +1,7 @@
 # 定义布尔型变量 has_ticket 表示是否有车票
 has_ticket = True
 
-# 定义整型变量 knife_length 表示刀的长苏,单位:厘米
+# 定义整型变量 knife_length 表示刀的长度,单位:厘米
 knife_length = 10
 
 # 首先检查是否有车票,如果有,才允许进行 安检
